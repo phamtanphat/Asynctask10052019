@@ -2,6 +2,7 @@ package khoapham.ptp.phamtanphat.asyntask10052019;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -57,43 +58,43 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            Toast.makeText(MainActivity.this, "Bắt đầu tách chuỗi", Toast.LENGTH_SHORT).show();
             try {
+                Toast.makeText(MainActivity.this, "Bắt đầu tách chuỗi", Toast.LENGTH_SHORT).show();
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-
         @Override
         protected String doInBackground(String... strings) {
-            String chuoi = strings[0];
-            String[] mangkytu = chuoi.split(" ");
-            for (String mang : mangkytu) {
-                for (int i = 0; i < mang.length(); i++) {
-                    publishProgress(String.valueOf(mang.charAt(i)));
-                    try {
+            try {
+                String chuoi = strings[0];
+                String[] mangkytu = chuoi.split(" ");
+                for (String mang : mangkytu) {
+                    for (int i = 0; i < mang.length(); i++) {
+                        publishProgress(String.valueOf(mang.charAt(i)));
                         Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
-                }
-                publishProgress(" ");
-                try {
+                    publishProgress(" ");
                     Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
+            } catch(Exception e){
+                Log.d("BBB",e.getMessage());
+                e.printStackTrace();
             }
-            return null;
+            return "Cắt chuỗi kết thúc";
         }
 
         @Override
         protected void onProgressUpdate(String... values) {
-            for (String value : values){
+            for (String value : values) {
                 txt.append(value + "\n");
             }
+        }
 
+        @Override
+        protected void onPostExecute(String s) {
+            Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
         }
     }
 }
