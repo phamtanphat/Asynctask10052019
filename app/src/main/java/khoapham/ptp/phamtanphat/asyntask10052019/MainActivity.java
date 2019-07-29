@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+
 public class MainActivity extends AppCompatActivity {
 
     Button btnAsync;
@@ -69,13 +71,26 @@ public class MainActivity extends AppCompatActivity {
             String[] mangkytu = chuoi.split(" ");
             for (String mang : mangkytu) {
                 for (int i = 0; i < mang.length(); i++) {
-                    Log.d("BBB", String.valueOf(mang.charAt(i)));
+                    publishProgress(String.valueOf(mang.charAt(i)));
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-                Log.d("BBB"," ");
+                publishProgress(" ");
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }
 
+        @Override
+        protected void onProgressUpdate(String... values) {
 
+        }
     }
 }
