@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onProgressUpdate(String... values) {
+            for (String value : values){
+                txt.append(value + "\n");
+            }
 
         }
     }
