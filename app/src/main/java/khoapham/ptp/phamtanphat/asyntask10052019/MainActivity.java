@@ -84,14 +84,12 @@ public class MainActivity extends AppCompatActivity {
             }
             return "Cắt chuỗi kết thúc";
         }
-
         @Override
         protected void onProgressUpdate(String... values) {
             for (String value : values) {
                 txt.append(value + "\n");
             }
         }
-
         @Override
         protected void onPostExecute(String s) {
             Toast.makeText(MainActivity.this, s, Toast.LENGTH_SHORT).show();
